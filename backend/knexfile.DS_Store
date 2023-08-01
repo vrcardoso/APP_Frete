@@ -10,7 +10,7 @@ module.exports = {
       host : 'localhost',
       port : 3306,
       user : 'root',
-      password : 'v8144280',
+      password : '12345',
       database : 'APP_Frete'
     },
     pool: {
