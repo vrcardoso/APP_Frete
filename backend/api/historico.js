@@ -88,6 +88,13 @@ module.exports = app => {
         const limit = req.query.limit || 15
         const userId = [req.params.id]
         const page = req.query.page || 1
+
+        const result = await app.db('historicos')
+        .where({idUsuario:req.params.id})
+        .count('id')
+        .first()
+  
+        const count = parseInt(result["count(`id`)"])
         
         app.db({h:"historicos",f:"fretes"})
             .select('h.id','f.nomeProduto','f.pesoProduto','f.nomeVeiculo','f.pesoVeiculo',
@@ -96,7 +103,7 @@ module.exports = app => {
             .whereRaw('??=??',['f.id','h.idFrete'])
             .whereIn('idUsuario',userId)
             .orderBy('h.id','desc')
-            .then(historicos => res.json(historicos))
+            .then(historicos => res.json({data:historicos,count,limit}))
             .catch(err => res.status(500).send(err))
         }
   
