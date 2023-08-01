@@ -20,5 +20,14 @@ module.exports = app =>{
         if(valueA !== valueB) throw msg
     }
 
-    return {existsOrError, notExistsOrError, equalsOrError}
+    function numberOrError(value,msg) {
+        if(isNaN(value)) throw msg
+    }
+
+    function dateOrError(value, msg) {
+        if(new Date(value)=="Invalid Date") throw msg
+
+    }
+
+    return {existsOrError, notExistsOrError, equalsOrError, numberOrError, dateOrError}
 }

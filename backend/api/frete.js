@@ -1,5 +1,5 @@
 module.exports = app => {
-    const {existsOrError, notExistsOrError, equalsOrError} = app.api.validation
+    const {existsOrError, notExistsOrError, equalsOrError , numberOrError, dateOrError} = app.api.validation
     
       const save = async (req, res) => {
           const frete = {...req.body}
@@ -32,15 +32,20 @@ module.exports = app => {
 
 
             existsOrError(frete.nomeVeiculo,veiculo.name, "Nome do Veiculo não informado")
-            equalsOrError(frete.nomeVeiculo,veiculo.peso, "Nome do Veiculo não confere")
+            equalsOrError(frete.nomeVeiculo,veiculo.name, "Nome do Veiculo não confere")
 
             existsOrError(frete.pesoVeiculo, "Peso do Veiculo não informado")
-            equalsOrError(frete.pesoVeiculo, "Peso do Veiculo não confere")
+            equalsOrError(frete.pesoVeiculo,veiculo.peso, "Peso do Veiculo não confere")
               
             existsOrError(frete.distancia, "Distancia não informada")
+            numberOrError(frete.distancia, "Distancia precisa ser um numero")
             existsOrError(frete.precoFrete, "Preço do Frete não informado")
+            numberOrError(frete.precoFrete, "Preço do precisa ser um numero")
             existsOrError(frete.taxa, "Taxa não informada")
+            numberOrError(frete.taxa, "Taxa precisa ser um numero")
             existsOrError(frete.dataPostagem, "Data da Postagem não informada")
+            dateOrError(frete.dataPostagem, "Data da Postagem precisa ser uma data")
+
   
           }catch(msg){
               return res.status(400).send(msg)
