@@ -32,4 +32,16 @@ module.exports = app => {
         .get(app.api.frete.getById)
         .put(app.api.frete.save)
         .delete(app.api.frete.remove)
+
+    app.route('/historicos')
+        .post(app.api.historico.save)
+        .get(app.api.historico.get)
+
+    app.route('/historicos/:id')
+        .get(app.api.historico.getById)
+        .put(app.api.historico.save)
+        .delete(app.api.historico.remove)
+
+    app.route('/users/:id/historico')
+        .get(app.api.historico.getByUser)
 }
