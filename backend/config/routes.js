@@ -1,3 +1,5 @@
+const admin = require('./admin')
+
 module.exports = app => {
     app.post('/signup', app.api.user.save)
     app.post('/signin',app.api.auth.signin)
@@ -5,45 +7,47 @@ module.exports = app => {
 
     app.route('/users')
         .all(app.config.passport.authenticate())
-        .post(app.api.user.save)
-        .get(app.api.user.get)
+        .post(admin(app.api.user.save))
+        .get(admin(app.api.user.get))
+
 
     app.route('/users/:id')
         .all(app.config.passport.authenticate())
-        .put(app.api.user.save)
+        .put(admin(app.api.user.save))
+        .get(admin(app.api.user.getById))
 
     app.route('/produtos')
         .all(app.config.passport.authenticate())
-        .post(app.api.produto.save)
+        .post(admin(app.api.produto.save))
         .get(app.api.produto.get)
 
     app.route('/produtos/:id')
         .all(app.config.passport.authenticate())
         .get(app.api.produto.getById)
-        .put(app.api.produto.save)
-        .delete(app.api.produto.remove)
+        .put(admin(app.api.produto.save))
+        .delete(admin(app.api.produto.remove))
 
     app.route('/veiculos')
         .all(app.config.passport.authenticate())    
-        .post(app.api.veiculo.save)
+        .post(admin(app.api.veiculo.save))
         .get(app.api.veiculo.get)
 
     app.route('/veiculos/:id')
         .all(app.config.passport.authenticate())
         .get(app.api.veiculo.getById)
-        .put(app.api.veiculo.save)
-        .delete(app.api.veiculo.remove)
+        .put(admin(app.api.veiculo.save))
+        .delete(admin(app.api.veiculo.remove))
 
     app.route('/fretes')
         .all(app.config.passport.authenticate())
-        .post(app.api.frete.save)
+        .post(admin(app.api.frete.save))
         .get(app.api.frete.get)
 
     app.route('/fretes/:id')
         .all(app.config.passport.authenticate())
         .get(app.api.frete.getById)
-        .put(app.api.frete.save)
-        .delete(app.api.frete.remove)
+        .put(admin(app.api.frete.save))
+        .delete(admin(app.api.frete.remove))
 
     app.route('/historicos')
         .all(app.config.passport.authenticate())
