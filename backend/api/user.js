@@ -14,6 +14,9 @@ module.exports = app => {
 
         if(req.params.id) user.id = req.params.id
 
+        if(!req.originalUrl.StartsWith('/users')) user.perfil="motorista"
+        if(!req.user || !(req.user.perfil == "admin")) user.perfil = "motorista"
+
         try{
             existsOrError(user.name, "Nome não informado")
             existsOrError(user.email, "E-mail não informado")
@@ -63,6 +66,24 @@ module.exports = app => {
             .then(produtos =>res.json(produtos))
             .catch(err =>res.status(500).send(err))
     }
+
+    const remove = async (req, res) =>{
+        try{
+            const historico = await app.db('historicos')
+                                .where({idUsuario:req.params.id})
+                            notExistsOrError(historico,"Usuario possui historicos associados")
+
+            const rowsUpdated = await app.db('users')
+                            .update({deletedAt:new Date()})
+                            .where({id:req.params.id})
+       
+            existsOrError(rowsUpdated, "Usuario não foi encontrado.")
+            res.status(204).send()
+       
+        }catch(msg){
+            res.status(400).send(msg)
+        }
+    }
     
-    return { save,get,getById }
+    return { save,get,getById,remove }
 }
