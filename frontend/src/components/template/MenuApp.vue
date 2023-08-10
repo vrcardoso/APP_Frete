@@ -24,29 +24,41 @@
             <v-list-item
             prepend-icon="mdi-package-variant"
             title="Produtos"
-            link="true"
-            to="https://www.google.com/"
+            :link="true"
+            href="http://localhost:8080/produtos"
             > 
             </v-list-item>
              
             <v-list-item
             prepend-icon="mdi-car-estate"
-            title="Veiculos"> 
+            title="Veiculos"
+            :link="true"
+            href="http://localhost:8080/"
+            > 
             </v-list-item>
              
             <v-list-item
             prepend-icon="mdi-truck-delivery"
-            title="Fretes"> 
+            title="Fretes"
+            :link="true"
+            href="http://localhost:8080/"
+            > 
             </v-list-item>
 
             <v-list-item
             prepend-icon="mdi-history"
-            title="Historico">
+            title="Historico"
+            :link="true"
+            href="http://localhost:8080/"
+            >
             </v-list-item>
 
             <v-list-item
             prepend-icon="mdi-account-circle"
-            title="Usuarios">
+            title="Usuarios"
+            :link="true"
+            href="http://localhost:8080/"
+            >
             </v-list-item>
         </v-list>
       
@@ -54,14 +66,23 @@
         <template v-slot:append>
             <v-divider></v-divider>
             <v-list>
+
                 <v-list-item
                 prepend-icon="mdi-account-cog-outline"
-                title="Account">
+                title="Account"
+                :link="true"
+                href="http://localhost:8080/"
+                >
                 </v-list-item>
+
                 <v-list-item
                 prepend-icon="mdi-reply-outline"
-                title="Logout">
+                title="Logout"
+                :link="true"
+                href="http://localhost:8080/"
+                >
                 </v-list-item>
+
             </v-list>
         </template>
     </v-navigation-drawer>

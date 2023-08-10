@@ -1,9 +1,6 @@
 <template>
 
-    
-
-
-         <v-footer class="bg-grey text-right pb-5" app="True" >        
+         <v-footer class="bg-grey text-right pb-5" :app="true" >        
              <v-container>
                  <v-row>
                      <v-col cols="12">

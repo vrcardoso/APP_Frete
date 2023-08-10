@@ -9,11 +9,14 @@
             </template>
 
                 <template v-slot:prepend>
-                    <v-app-bar-nav-icon></v-app-bar-nav-icon>
+                    <v-app-bar-nav-icon
+                    href="http://localhost:8080/"
+                    >
+                    </v-app-bar-nav-icon>
                 </template>
                 
 
-                <v-app-bar-title>Titulo</v-app-bar-title>
+                <v-app-bar-title>Titulo Current</v-app-bar-title>
                 
                 <v-spacer></v-spacer>
                  <v-btn icon>
@@ -31,8 +34,11 @@
 </template>
 
 <script>
+
 export default {
-    name:'HeaderApp'
+    name:'HeaderApp',
+    data: () => ({
+  })
 }
 </script>
 
